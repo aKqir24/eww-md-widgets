@@ -1,27 +1,71 @@
 <div align="center">
-    <h1>
-        eww-md-widgets
-    </h1>
-    <p>
-        A collection of widgets I use made in `EWW's` widget system. The widgets are made by closely following the <u>Material 3 Design</u> guidelines. Still I am still learning some stuff,
-        most of the backend is writen by AI and the design is half customized by me. If you have some interesting widgets, please don't hesitate to open a pull request.
-    </p>
+
+# eww-md-widgets
+
+A collection of Material 3 styled widgets for [EWW](https://github.com/elkowar/eww).
+
+Built by closely following the [Material 3 Design](https://m3.material.io/) guidelines. Most of the backend is written with AI assistance and the design is partially customized.
+
+> If you have interesting widget ideas, feel free to open a pull request!
+
 </div>
 
-## Folder Tree
+---
+
+## Dependencies
+
+| Package | Description |
+|---------|-------------|
+| `eww` | Widget system |
+| `matugen` | Material You color generation |
+| `jq` | JSON processing |
+| `xdotool` | X11 automation |
+
+## Setup
+
+### Usage
+
+Run the toggle script from the eww config folder:
+
 ```bash
-├── scripts # script used for all widgets
-├── toggle.sh # no need to modify (used to toggle a widget)
-├── variables.yuck # all the variables the widget uses
-├── eww.scss # all widget style
-├── eww.yuck # all widget layout
-└── widgets
-    └── bar # The widget folder
-        ├── scripts # scripts used for your widget
-        ├── eww.scss # widget style
-        ├── eww.yuck # widget layout
-        └── launch.sh # launch script
+bash path/to/eww/config/toggle.sh [widgetname]
+```
+
+### Matugen Configuration
+
+Add the following to your matugen config:
+
+```toml
+[templates.eww]
+input_path = '~/.files/resources/matugen-themes/templates/eww.scss'
+output_path = '~/.cache/matugen/eww-colors.scss'
+```
+
+## Folder Structure
+
+```
+.
+├── scripts/          # Scripts used for all widgets
+├── toggle.sh         # Widget toggle script (no modification needed)
+├── variables.yuck    # Global widget variables
+├── eww.scss          # Global widget styles
+├── eww.yuck          # Global widget layout
+└── widgets/
+    └── bar/          # Example widget folder
+        ├── scripts/  # Widget-specific scripts
+        ├── eww.scss  # Widget styles
+        ├── eww.yuck  # Widget layout
+        └── launch.sh # Widget launch script
 ```
 
 ## Widget Progress
-- [ ] ca
+
+- [x] Calendar
+- [ ] Bluetooth
+- [ ] WiFi
+- [ ] Audio Controls
+- [ ] Power Profiles *(in progress)*
+- [ ] Status Bar *(in progress)*
+- [ ] App Launcher *(in progress)*
+- [ ] Power Menu *(in progress)*
+- [ ] Emoji Menu *(in progress)*
