@@ -1,0 +1,26 @@
+;; ── Widget ──
+(defwidget emoji-content []
+  (box :class "emoji-overlay" :orientation "v" :halign "center" :valign "center"
+    (eventbox :onclick "eww close emoji"
+      (box :class "emoji-backdrop"))
+    (box :class "emoji-card" :orientation "v" :space-evenly false
+      (box :class "emoji-search" :orientation "h" :space-evenly false :spacing 8
+        (label :class "emoji-search-icon" :text "")
+        (label :class "emoji-search-text" :halign "start" :hexpand true
+          :text {emoji_query == "" ? "Search emoji..." : emoji_query}))
+      (box :class "emoji-separator")
+      (literal :class "emoji-list" :content emoji_listen))))
+
+;; ── Window ──
+(defwindow emoji
+  :monitor 0
+  :windowtype "normal"
+  :stacking "overlay"
+  :wm-ignore true
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "100%"
+                      :height "100%"
+                      :anchor "top left")
+  :reserve (struts :distance "0px" :side "top")
+  (emoji-content))

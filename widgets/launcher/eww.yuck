@@ -1,0 +1,30 @@
+;; ── Imports ── 
+(include "variables.yuck")
+
+;; ── Widget ──
+(defwidget launcher-content
+  (box :class "launcher-overlay" :orientation "v" :halign "center" :valign "center"
+    (eventbox :onclick "scripts/toggle-launcher"
+      (box :class "launcher-backdrop"))
+    (box :class "launcher-card" :orientation "v" :space-evenly false
+      (box :class "launcher-search" :orientation "h" :space-evenly false :spacing 8
+        (label :class "launcher-search-icon" :text "󰍉")
+        (label :class "launcher-search-text" :halign "start" :hexpand true
+          :text {search_query == "" ? "Type to search..." : search_query}))
+      (box :class "launcher-separator")
+      (literal :class "launcher-list" :content search_listen))))
+
+;; ── Window ──
+(defwindow launcher
+  :monitor 0
+  :windowtype "normal"
+  :stacking "overlay"
+  :wm-ignore true
+  :focusable true
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "100%"
+                      :height "100%"
+                      :anchor "top left")
+  :reserve (struts :distance "0px" :side "top")
+  (launcher-content))
