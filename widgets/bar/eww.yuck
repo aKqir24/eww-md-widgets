@@ -35,7 +35,7 @@
     (screentimeout)
     (volume)
     (sys_stats)
-    (powerprofile-widget)))
+    (power-btn)))
 
 ;; Screen timeout: icon + revealer scale --
 (defwidget screentimeout []
@@ -74,18 +74,32 @@
 
 ;; Combined System Stats Module
 (defwidget sys_stats []
-  (box :class "pill" :orientation "h" :space-evenly false :spacing 8
-    (label :class "sys_icon" :text "󰭄" :style "margin-right: 6px;")
+  (eventbox :onhover "eww open sys-tooltip && eww update sys_reveal true"
+            :onhoverlost "eww close sys-tooltip && eww update sys_reveal false"
+    (box :class "pill" :orientation "h" :space-evenly false :spacing 8
+      (label :class "sys_icon" :text "󰭄" :style "margin-right: 6px;")
 
-    (box :class "cpu_module" :orientation "h" :space-evenly false
-      (circular-progress :value cpu :class "cpubar" :thickness 4
-        (label :text "󰧟" :class "center-dot")))
+      (box :class "cpu_module" :orientation "h" :space-evenly false
+        (circular-progress :value cpu :class "cpubar" :thickness 4
+          (label :text "󰧟" :class "center-dot")))
 
-    (box :class "mem_module" :orientation "h" :space-evenly false
-      (circular-progress :value memory :class "membar" :thickness 4
-        (label :text "󰧟" :class "center-dot")))))
+      (box :class "mem_module" :orientation "h" :space-evenly false
+        (circular-progress :value memory :class "membar" :thickness 4
+          (label :text "󰧟" :class "center-dot"))))))
 
-;; -- Window --
+;; System Stats Tooltip (custom window, no GTK tooltip)
+(defwidget sys-tooltip-content []
+  (box :class "sys-tooltip" :orientation "v" :halign "fill"
+    (box :class "sys-tooltip-body" :orientation "v" :space-evenly false :spacing 2
+      (label :halign "start" :text "󰘚 CPU    ${cpu_detail}%    󰈐 TEMP   ${temp_detail}°C")
+      (label :halign "start" :text "󰏓 RAM    ${ram_detail}%    󰋊 DISK   ${storage_detail}%"))))
+
+;; Power Button (opens powermenu)
+(defwidget power-btn []
+  (button :class "pill power-btn-icon" :onclick "$HOME/.files/configs/all/eww/toggle.sh powermenu"
+    (label :class "power-btn-icon" :text "⏻")))
+
+;; -- Windows --
 (defwindow bar
   :monitor 0
   :windowtype "dock"
@@ -98,3 +112,17 @@
                       :anchor "top center")
   :reserve (struts :side "top" :distance "36px")
   (bar))
+
+(defwindow sys-tooltip
+  :monitor 0
+  :windowtype "normal"
+  :stacking "fg"
+  :wm-ignore true
+  :focusable false
+  :exclusivity "ignore"
+  :geometry (geometry :x "68%"
+                      :y "44px"
+                      :width "280px"
+                      :height "60px"
+                      :anchor "top left")
+  (sys-tooltip-content))

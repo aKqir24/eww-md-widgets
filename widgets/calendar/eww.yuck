@@ -14,7 +14,7 @@
   :stacking "overlay"
   :wm-ignore true
   :geometry (geometry :x "-35%"
-                      :y "40px"
+                      :y "44px"
                       :width "336px"
                       :height "214px"
                       :anchor "top right")

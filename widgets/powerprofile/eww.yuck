@@ -5,14 +5,24 @@
     (box :class "pill powerprofile-pill" :orientation "h" :space-evenly false :valign "center"
       (label :class "powerprofile-icon" :text "⏻"))))
 
+(defwidget profile-button [prof icon lbl]
+  (button :class "powerprofile-item {current_profile == \"${prof}\" ? \"active\" : \"\"}"
+          :onclick "powerprofilesctl set ${prof} && notify-send 'Power Profile' 'Set to ${lbl}' && $HOME/.files/configs/all/eww/widgets/powerprofile/launch.sh"
+    (box :class "powerprofile-item-inner" :orientation "h" :space-evenly false :spacing 12 :halign "center" :valign "center"
+      (label :class "powerprofile-item-icon" :text "${icon}")
+      (label :class "powerprofile-item-label" :text "${lbl}"))))
+
 (defwidget powerprofile-popup []
-  (box :class "powerprofile-card" :orientation "v" :space-evenly false :spacing 6
-    (button :class "powerprofile-item" :onclick "powerprofilesctl set performance && notify-send 'Power Profile' 'Setting to performance...' && $HOME/.files/configs/all/eww/widgets/powerprofile/launch.sh"
-      (label :text "  ⏻  Performance  "))
-    (button :class "powerprofile-item" :onclick "powerprofilesctl set balanced && notify-send 'Power Profile' 'Setting to balanced...' && $HOME/.files/configs/all/eww/widgets/powerprofile/launch.sh"
-      (label :text "  ⏻  Balanced  "))
-    (button :class "powerprofile-item" :onclick "powerprofilesctl set power-saver && notify-send 'Power Profile' 'Setting to power-saver...' && $HOME/.files/configs/all/eww/widgets/powerprofile/launch.sh"
-      (label :text "  ⏻  Minimal  "))))
+  (box :class "powerprofile-card" :orientation "v" :space-evenly false :spacing 4
+    (box :class "powerprofile-header" :orientation "h" :space-evenly false :spacing 8 :halign "center" :valign "center"
+      (label :class "powerprofile-header-icon" :text "⏻")
+      (label :class "powerprofile-header-label" :text "Power Profile"))
+    (label :class "powerprofile-current" :halign "center"
+           :text {current_profile == "performance" ? "Performance" : current_profile == "power-saver" ? "Power Saver" : "Balanced"})
+    (box :class "powerprofile-separator")
+    (profile-button :prof "power-saver" :icon "󰋜" :lbl "Power Saver")
+    (profile-button :prof "balanced" :icon "󰈐" :lbl "Balanced")
+    (profile-button :prof "performance" :icon "󰤄" :lbl "Performance")))
 
 (defwindow powerprofile
   :monitor 0
@@ -22,6 +32,6 @@
   :geometry (geometry :x "-20px"
                       :y "36px"
                       :width "200px"
-                      :height "140px"
+                      :height "216px"
                       :anchor "top right")
   (powerprofile-popup))

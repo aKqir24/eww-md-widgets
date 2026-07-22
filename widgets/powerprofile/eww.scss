@@ -1,6 +1,6 @@
 .powerprofile-pill {
   padding: 1px 4px 2px 1px;
-  border-radius: 50%
+  border-radius: 50%;
 }
 
 .powerprofile-icon {
@@ -10,22 +10,88 @@
 }
 
 .powerprofile-card {
-  background-color: $eww-surface-container-high;
-  border-radius: 20px;
-  padding: 12px;
+  all: unset;
+  background-color: $eww-surface-container-low;
+  border-radius: 28px;
+  padding: 16px;
+  font-family: "Hurmit Nerd Font", monospace;
+}
+
+.powerprofile-header {
+  padding: 0 0 4px 0;
+}
+
+.powerprofile-header-icon {
+  all: unset;
+  color: $eww-accent;
+  font-family: "Hurmit Nerd Font", monospace;
+  font-size: 20px;
+}
+
+.powerprofile-header-label {
+  all: unset;
+  color: $eww-on-surface;
+  font-family: "Hurmit Nerd Font", monospace;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.powerprofile-current {
+  all: unset;
+  color: $eww-accent;
+  font-family: "Hurmit Nerd Font", monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.powerprofile-separator {
+  min-height: 1px;
+  background-color: $eww-outline-variant;
+  margin: 4px 8px;
 }
 
 .powerprofile-item {
-  background-color: transparent;
-  border-radius: 12px;
-  padding: 8px 12px;
-  color: $eww-on-surface;
+  all: unset;
+  background-color: $eww-surface-container-high;
+  border-radius: 20px;
+  padding: 0;
+  min-height: 48px;
   font-family: "Hurmit Nerd Font", monospace;
-  font-size: 14px;
-  transition: background-color 150ms ease;
+  transition: all 150ms cubic-bezier(0.2, 0, 0, 1);
 }
 
 .powerprofile-item:hover {
+  background-color: $eww-surface-container-highest;
+}
+
+.powerprofile-item.active {
   background-color: $eww-primary-container;
+}
+
+.powerprofile-item-inner {
+  padding: 8px 16px;
+}
+
+.powerprofile-item-icon {
+  all: unset;
+  color: $eww-accent;
+  font-family: "Hurmit Nerd Font", monospace;
+  font-size: 18px;
+}
+
+.powerprofile-item.active .powerprofile-item-icon {
+  color: $eww-on-primary-container;
+}
+
+.powerprofile-item-label {
+  all: unset;
+  color: $eww-on-surface;
+  font-family: "Hurmit Nerd Font", monospace;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.powerprofile-item.active .powerprofile-item-label {
   color: $eww-on-primary-container;
 }

@@ -1,24 +1,39 @@
-;; -- Widget --
-(defwidget powermenu-content []
-  (box :class "powermenu-overlay" :orientation "v" :halign "center" :valign "center"
-    :space-evenly false
-    (eventbox :onclick "$HOME/.files/configs/all/eww/widgets/powermenu/scripts/toggle-powermenu"
-      (box :class "powermenu-backdrop" :orientation "v"))
-    (box :class "powermenu-card" :orientation "v" :space-evenly false :spacing 24 :halign "center"
-      (label :class "powermenu-title" :text "Power Menu")
-      (box :class "powermenu-actions" :orientation "h" :space-evenly false :spacing 16 :halign "center"
-        (powermenu-button :icon "󰤄" :label "Sleep" :action "systemctl suspend")
-        (powermenu-button :icon "󰍃" :label "Logout" :action "$HOME/.files/configs/all/eww/widgets/powermenu/scripts/logout-session")
-        (powermenu-button :icon "󰜉" :label "Reboot" :action "systemctl reboot")
-        (powermenu-button :icon "⏻" :label "Power" :action "systemctl poweroff"))
-      (button :class "powermenu-cancel" :onclick "$HOME/.files/configs/all/eww/widgets/powermenu/scripts/toggle-powermenu"
-        (label :text "Cancel")))))
+;; -- Power Menu Widget --
 
-(defwidget powermenu-button [icon label action]
+(defwidget powermenu-button [icon lbl action]
   (button :class "powermenu-btn" :onclick "${action} && $HOME/.files/configs/all/eww/widgets/powermenu/scripts/toggle-powermenu"
     (box :class "powermenu-btn-inner" :orientation "v" :space-evenly false :spacing 8 :halign "center"
       (label :class "powermenu-btn-icon" :text "${icon}")
-      (label :class "powermenu-btn-label" :text "${label}"))))
+      (label :class "powermenu-btn-label" :text "${lbl}"))))
+
+(defwidget profile-button [prof icon lbl]
+  (button :class "powermenu-profile-item {current_profile == \"${prof}\" ? \"active\" : \"\"}"
+          :onclick "powerprofilesctl set ${prof} && notify-send 'Power Profile' 'Set to ${lbl}' && $HOME/.files/configs/all/eww/widgets/powermenu/scripts/toggle-powermenu"
+    (box :class "powermenu-profile-inner" :orientation "h" :space-evenly false :spacing 12 :halign "center" :valign "center"
+      (label :class "powermenu-profile-icon" :text "${icon}")
+      (label :class "powermenu-profile-label" :text "${lbl}"))))
+
+(defwidget powermenu-content []
+  (box :class "powermenu-card" :orientation "v" :space-evenly false :spacing 16 :halign "center"
+    (label :class "powermenu-title" :text "Power Menu")
+    (box :class "powermenu-separator")
+    (box :class "powermenu-actions" :orientation "h" :space-evenly false :spacing 12 :halign "center"
+      (powermenu-button :icon "󰤄" :lbl "Sleep" :action "systemctl suspend")
+      (powermenu-button :icon "󰍃" :lbl "Logout" :action "$HOME/.files/configs/all/eww/widgets/powermenu/scripts/logout-session")
+      (powermenu-button :icon "󰜉" :lbl "Reboot" :action "systemctl reboot")
+      (powermenu-button :icon "⏻" :lbl "Power" :action "systemctl poweroff"))
+    (box :class "powermenu-separator")
+    (box :class "powermenu-profile-header" :orientation "h" :space-evenly false :spacing 8 :halign "center" :valign "center"
+      (label :class "powermenu-profile-header-icon" :text "⏻")
+      (label :class "powermenu-profile-header-label" :text "Power Profile"))
+    (label :class "powermenu-current-profile" :halign "center"
+           :text {current_profile == "performance" ? "Performance" : current_profile == "power-saver" ? "Power Saver" : "Balanced"})
+    (box :class "powermenu-profiles" :orientation "v" :space-evenly false :spacing 4 :halign "center"
+      (profile-button :prof "power-saver" :icon "󰋜" :lbl "Power Saver")
+      (profile-button :prof "balanced" :icon "󰈐" :lbl "Balanced")
+      (profile-button :prof "performance" :icon "󰤄" :lbl "Performance"))
+    (button :class "powermenu-cancel" :onclick "$HOME/.files/configs/all/eww/widgets/powermenu/scripts/toggle-powermenu"
+      (label :text "Cancel"))))
 
 ;; -- Window --
 (defwindow powermenu
@@ -26,10 +41,11 @@
   :windowtype "normal"
   :stacking "overlay"
   :wm-ignore true
+  :focusable false
   :geometry (geometry :x "0%"
-                      :y "0%"
-                      :width "100%"
-                      :height "100%"
-                      :anchor "top left")
+                      :y "44px"
+                      :width "360px"
+                      :height "400px"
+                      :anchor "top center")
   :reserve (struts :distance "0px" :side "top")
   (powermenu-content))

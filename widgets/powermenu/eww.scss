@@ -1,16 +1,24 @@
 .powermenu-card {
+  all: unset;
   background-color: $eww-surface-container-high;
-  border-radius: 24px;
-  padding: 24px;
+  border-radius: 28px;
+  padding: 16px;
   margin: 60px 16px 0 16px;
   min-width: 320px;
+  font-family: "Hurmit Nerd Font", monospace;
 }
 
 .powermenu-title {
   color: $eww-on-surface;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
   padding: 0;
+}
+
+.powermenu-separator {
+  min-height: 1px;
+  background-color: $eww-outline-variant;
+  margin: 0 8px;
 }
 
 .powermenu-actions {
@@ -18,24 +26,30 @@
 }
 
 .powermenu-btn {
+  all: unset;
   background-color: $eww-surface-container;
   border-radius: 20px;
   padding: 0;
-  transition: all 150ms ease;
+  font-family: "Hurmit Nerd Font", monospace;
+  transition: all 150ms cubic-bezier(0.2, 0, 0, 1);
 }
 
 .powermenu-btn:hover {
   background-color: $eww-primary-container;
 }
 
+.powermenu-btn:active {
+  background-color: $eww-surface-container-highest;
+}
+
 .powermenu-btn-inner {
-  padding: 16px 20px;
-  min-width: 72px;
+  padding: 20px 24px;
+  min-width: 80px;
 }
 
 .powermenu-btn-icon {
   color: $eww-accent;
-  font-size: 24px;
+  font-size: 28px;
   padding: 0;
 }
 
@@ -43,28 +57,133 @@
   color: $eww-on-primary-container;
 }
 
+.powermenu-btn:active .powermenu-btn-icon {
+  color: $eww-on-surface;
+}
+
 .powermenu-btn-label {
   color: $eww-on-surface-variant;
-  font-size: 11px;
+  font-size: 12px;
+  font-weight: 500;
   padding: 0;
+  letter-spacing: 0.5px;
 }
 
 .powermenu-btn:hover .powermenu-btn-label {
   color: $eww-on-primary-container;
 }
 
-.powermenu-cancel {
+.powermenu-btn:active .powermenu-btn-label {
+  color: $eww-on-surface;
+}
+
+/* Power Profile Section */
+.powermenu-profile-header {
+  padding: 0;
+}
+
+.powermenu-profile-header-icon {
+  all: unset;
+  color: $eww-accent;
+  font-family: "Hurmit Nerd Font", monospace;
+  font-size: 18px;
+}
+
+.powermenu-profile-header-label {
+  all: unset;
+  color: $eww-on-surface;
+  font-family: "Hurmit Nerd Font", monospace;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.powermenu-current-profile {
+  all: unset;
+  color: $eww-accent;
+  font-family: "Hurmit Nerd Font", monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.powermenu-profiles {
+  padding: 0;
+}
+
+.powermenu-profile-item {
+  all: unset;
   background-color: $eww-surface-container;
+  border-radius: 16px;
+  padding: 0;
+  min-height: 44px;
+  font-family: "Hurmit Nerd Font", monospace;
+  transition: all 150ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.powermenu-profile-item:hover {
+  background-color: $eww-surface-container-highest;
+}
+
+.powermenu-profile-item.active {
+  background-color: $eww-primary-container;
+}
+
+.powermenu-profile-inner {
+  padding: 8px 16px;
+}
+
+.powermenu-profile-icon {
+  all: unset;
+  color: $eww-accent;
+  font-family: "Hurmit Nerd Font", monospace;
+  font-size: 16px;
+}
+
+.powermenu-profile-item.active .powermenu-profile-icon {
+  color: $eww-on-primary-container;
+}
+
+.powermenu-profile-label {
+  all: unset;
+  color: $eww-on-surface;
+  font-family: "Hurmit Nerd Font", monospace;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.powermenu-profile-item.active .powermenu-profile-label {
+  color: $eww-on-primary-container;
+}
+
+/* Cancel Button */
+.powermenu-cancel {
+  all: unset;
+  background-color: transparent;
   border-radius: 20px;
   padding: 8px 24px;
-  transition: all 150ms ease;
+  font-family: "Hurmit Nerd Font", monospace;
+  transition: all 150ms cubic-bezier(0.2, 0, 0, 1);
 }
 
 .powermenu-cancel:hover {
+  background-color: $eww-primary-container;
+}
+
+.powermenu-cancel:active {
   background-color: $eww-surface-container-highest;
 }
 
 .powermenu-cancel label {
-  color: $eww-on-surface-variant;
-  font-size: 13px;
+  color: $eww-accent;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+}
+
+.powermenu-cancel:hover label {
+  color: $eww-on-primary-container;
+}
+
+.powermenu-cancel:active label {
+  color: $eww-on-surface;
 }

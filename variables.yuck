@@ -54,3 +54,22 @@
 
 ;; -- Powermenu --
 (defvar powermenu_open false)
+
+;; -- Power Profile --
+(defpoll current_profile :initial "balanced" :interval "5s"
+  "powerprofilesctl get 2>/dev/null || echo balanced")
+
+;; -- System Stats Tooltip --
+(defvar sys_reveal false)
+
+(defpoll cpu_detail :initial "0" :interval "2s"
+  "top -bn1 | grep 'Cpu(s)' | awk '{printf \"%.1f\", $2+$4}'")
+
+(defpoll ram_detail :initial "0" :interval "3s"
+  "free | awk '/Mem:/{printf \"%.1f\", $3/$2*100}'")
+
+(defpoll storage_detail :initial "0" :interval "30s"
+  "df / | awk 'NR==2{gsub(/%/,\"\",$5); print $5}'")
+
+(defpoll temp_detail :initial "0" :interval "5s"
+  "awk '{t=$1/1000; printf (t == int(t) ? \"%d\" : \"%.1f\"), t}' /sys/class/thermal/thermal_zone0/temp")
