@@ -1,0 +1,27 @@
+;; -- Power Profile Widget --
+
+(defwidget powerprofile-widget []
+  (eventbox :onclick "$HOME/.files/configs/all/eww/widgets/powerprofile/launch.sh"
+    (box :class "pill powerprofile-pill" :orientation "h" :space-evenly false :valign "center"
+      (label :class "powerprofile-icon" :text "⏻"))))
+
+(defwidget powerprofile-popup []
+  (box :class "powerprofile-card" :orientation "v" :space-evenly false :spacing 6
+    (button :class "powerprofile-item" :onclick "powerprofilesctl set performance && notify-send 'Power Profile' 'Setting to performance...' && $HOME/.files/configs/all/eww/widgets/powerprofile/launch.sh"
+      (label :text "  ⏻  Performance  "))
+    (button :class "powerprofile-item" :onclick "powerprofilesctl set balanced && notify-send 'Power Profile' 'Setting to balanced...' && $HOME/.files/configs/all/eww/widgets/powerprofile/launch.sh"
+      (label :text "  ⏻  Balanced  "))
+    (button :class "powerprofile-item" :onclick "powerprofilesctl set power-saver && notify-send 'Power Profile' 'Setting to power-saver...' && $HOME/.files/configs/all/eww/widgets/powerprofile/launch.sh"
+      (label :text "  ⏻  Minimal  "))))
+
+(defwindow powerprofile
+  :monitor 0
+  :windowtype "dock"
+  :stacking "fg"
+  :wm-ignore true
+  :geometry (geometry :x "-20px"
+                      :y "36px"
+                      :width "200px"
+                      :height "140px"
+                      :anchor "top right")
+  (powerprofile-popup))

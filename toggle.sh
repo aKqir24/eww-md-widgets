@@ -1,15 +1,14 @@
 #!/bin/bash
 # Usage: sh toggle.sh [widget name]
-# Find the eww bin & config
 
 EWW=$(which eww)
-CFG="$HOME/.config/eww/widgets/${1}"
+CFG="$HOME/.files/configs/all/eww"
 
 ## Run eww daemon if not running already
-if [[ ! `pidof eww` ]]; then
-	${EWW} daemon
+if [[ ! $(pidof eww) ]]; then
+	${EWW} --config "$CFG" daemon
 	sleep 1
 fi
 
 # Launch the widget
-sh ${CFG}/launch.sh ${CFG}
+sh "$CFG/widgets/${1}/launch.sh"

@@ -1,35 +1,9 @@
-/* ── App Launcher (rofi drun MD3) ── */
-
-.launcher-overlay {
-}
-
-.launcher-backdrop {
-}
-
 .launcher-card {
   background-color: $eww-surface-container-high;
   border-radius: 28px;
   padding: 4px 0;
   margin: 80px 16px 0 16px;
   min-width: 480px;
-}
-
-.launcher-search {
-  background-color: $eww-surface-container-highest;
-  border-radius: 28px;
-  padding: 12px 20px;
-  min-height: 44px;
-  margin: 8px 8px 4px 8px;
-}
-
-.launcher-search-icon {
-  color: $eww-on-surface-variant;
-  font-size: 20px;
-}
-
-.launcher-search-input {
-  color: $eww-on-surface;
-  font-size: 15px;
 }
 
 .launcher-separator {

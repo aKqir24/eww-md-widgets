@@ -1,81 +1,99 @@
-@import "../../../../.cache/matugen/eww-colors.scss"
-
-.calendar-overlay {
-}
-
-.calendar-backdrop {
-}
-
+/* -- MD3 Calendar Card -- */
 .calendar-card {
   background-color: $eww-surface-container-high;
-  border-radius: 24px;
-  padding: 16px;
-  margin: 44px 16px 0 16px;
-  min-width: 280px;
+  border-radius: 28px;
+  padding: 16px 16px 8px 16px;
+  margin-right: 8px;
+  min-width: 260px;
 }
 
-.calendar-header {
-  padding: 0 4px 4px;
-}
-
-.calendar-nav {
-  color: $eww-on-surface-variant;
-  font-size: 16px;
-  padding: 4px 10px;
-  border-radius: 20px;
-  transition: all 150ms ease;
-}
-
-.calendar-nav:hover {
-  background-color: $eww-surface-container;
-  color: $eww-on-surface;
-}
-
-.calendar-close {
-  min-width: 40px;
-  min-height: 40px;
-  border-radius: 50%;
-  color: $eww-on-surface-variant;
-  font-size: 20px;
-  padding: 0;
-  transition: background-color 200ms cubic-bezier(0.2, 0, 0, 1);
-}
-
-.calendar-close:hover {
-  background-color: $eww-surface-container-highest;
-  color: $eww-on-surface;
-}
-
-.calendar-title {
-  color: $eww-on-surface;
+/* -- GTK Calendar: blanket override on ALL nodes -- */
+calendar {
+  all: unset;
+  font-family: "Hurmit Nerd Font", monospace;
   font-size: 14px;
-  font-weight: bold;
-  padding: 4px 0;
-}
-
-.calendar-weekdays label {
-  color: $eww-outline;
-  font-size: 10px;
-  padding: 4px 0;
-}
-
-.calendar-day {
   color: $eww-on-surface-variant;
-  font-size: 11px;
-  min-width: 26px;
-  min-height: 26px;
-  padding: 2px;
+  background-color: $eww-surface-container-high;
+  border-radius: 28px;
+  border: none;
+  box-shadow: none;
 }
 
-.calendar-day:hover {
+/* Every child node: transparent */
+calendar * {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* -- Headline -- */
+calendar.header {
   color: $eww-on-surface;
-  background-color: $eww-surface-container;
-  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 2px 8px 8px 8px;
+  min-height: 24px;
 }
 
-.calendar-day.today {
+/* -- Nav arrows -- */
+calendar.button {
+  color: $eww-accent;
+  font-size: 18px;
+  min-width: 30px;
+  min-height: 30px;
+  padding: 0;
+  border-radius: 15px;
+}
+
+calendar.button:hover {
   color: $eww-on-primary-container;
   background-color: $eww-primary-container;
+}
+
+/* -- Weekday headers -- */
+calendar:indeterminate {
+  color: $eww-outline;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 2px 0 6px 0;
+}
+
+/* -- Day cells -- */
+calendar {
+  min-width: 30px;
+  min-height: 30px;
+  padding: 0;
+}
+
+/* Hover */
+calendar:hover {
+  color: $eww-on-surface;
+  background-color: $eww-surface-container-highest;
+  border-radius: 15px;
+}
+
+/* -- Today: MD3 outlined ring -- */
+calendar.highlight {
+  color: $eww-accent;
+  background-color: transparent;
+  outline: 1.5px solid $eww-accent;
+  outline-offset: -3px;
   border-radius: 50%;
-  font-weight: bold;
+  font-weight: 500;
+  min-width: 30px;
+  min-height: 30px;
+}
+
+/* -- Selected: MD3 filled circle -- */
+calendar:selected {
+  color: $eww-on-primary-container;
+  background-color: $eww-primary-container;
+  outline: none;
+  font-weight: 500;
+}
+
+/* -- Marks row -- */
+calendar:indeterminate:selected {
+  color: $eww-accent;
+  background-color: transparent;
 }

@@ -1,3 +1,6 @@
 #!/bin/sh
-
-${EWW} --config "$1" open bar
+if eww active-windows 2>/dev/null | grep -q bar; then
+    eww close bar
+else
+    eww open bar
+fi

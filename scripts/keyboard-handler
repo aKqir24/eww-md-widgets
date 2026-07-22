@@ -1,8 +1,5 @@
 #!/bin/bash
-# Captures keyboard input for eww launcher search via xev
-eww update search_query=""
-QUERY=""
-
+# Captures keyboard input for eww launcher via xev
 for i in 1 2 3 4 5; do
   WIN=$(xdotool search --name "launcher" 2>/dev/null | head -1)
   [ -n "$WIN" ] && break
@@ -23,12 +20,7 @@ while IFS= read -r line; do
         ks=$((16#$hex))
         case $ks in
             0xff1b) eww close launcher; break;;
-            0xff08) QUERY="${QUERY%?}";;
             0xff0d) eww close launcher; break;;
-            0x0020) QUERY="$QUERY ";;
-            *) [ $ks -ge 0x21 ] && [ $ks -le 0x7e ] && QUERY="$QUERY$(printf "\\$(printf '%03o' $ks)")";;
         esac
-        eww update search_query="$QUERY"
-        ~/.config/eww/scripts/search-apps.sh "$QUERY"
     fi
 done

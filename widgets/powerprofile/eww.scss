@@ -1,0 +1,31 @@
+.powerprofile-pill {
+  padding: 1px 4px 2px 1px;
+  border-radius: 50%
+}
+
+.powerprofile-icon {
+  color: $eww-accent;
+  font-size: 16px;
+  margin: 0 6px;
+}
+
+.powerprofile-card {
+  background-color: $eww-surface-container-high;
+  border-radius: 20px;
+  padding: 12px;
+}
+
+.powerprofile-item {
+  background-color: transparent;
+  border-radius: 12px;
+  padding: 8px 12px;
+  color: $eww-on-surface;
+  font-family: "Hurmit Nerd Font", monospace;
+  font-size: 14px;
+  transition: background-color 150ms ease;
+}
+
+.powerprofile-item:hover {
+  background-color: $eww-primary-container;
+  color: $eww-on-primary-container;
+}

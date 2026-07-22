@@ -1,141 +1,186 @@
-@import "../../../../.cache/matugen/eww-colors.scss"
-
-* {
+/* Global reset */
+.bar_class, .bar_class *,
+.right_modules, .right_modules *,
+.left_modules, .left_modules *,
+.module, .module *,
+.module-2, .module-2 *,
+.cpu_module, .cpu_module *,
+.mem_module, .mem_module *,
+.scr_module, .scr_module *,
+.pill, .pill * {
   all: unset;
   font-family: "Hurmit Nerd Font", monospace;
-  font-size: 14px;
+  font-size: 18px;
 }
 
-/* ── Bar ── */
-
-.bar {
+/* Bar shell */
+.bar_class {
   background-color: $eww-surface-container-low;
-  padding: 1px 20px 0px 20px;
-  border-radius: 14px;
-  margin: 0 12px;
+  border-radius: 16px;
+  padding: 0 16px;
+  margin: 0 3px;
 }
 
-/* ── Containers ── */
-
-.container {
-  padding: 0;
+/* Workspace buttons */
+.right_modules {
+  padding: 4px 4px;
 }
 
-/* ── Workspaces ── */
-
-.workspaces {
-  padding: 0 2px;
-}
-
-/* ── MD3 Nav Bar Indicator States ── */
-
-/* Empty -- no windows, no indicator */
 button.ws {
-  min-width: 28px;
+  min-width: 22px;
   min-height: 22px;
   border-radius: 10px;
-  color: $eww-outline;
+  color: $eww-outline-variant;
+  font-size: 16px;
   padding: 0;
-  font-size: 13px;
   transition: all 200ms cubic-bezier(0.2, 0, 0, 1);
 }
 
-/* Occupied -- has windows, subtle surface tint */
+button.ws.idle {
+  color: $eww-secondary;
+}
+
 button.ws.occupied {
-  color: $eww-on-surface-variant;
+  color: $eww-outline;
 }
 
 button.ws.occupied:hover {
-  color: $eww-on-surface;
+  color: $eww-on-surface-variant;
   background-color: $eww-surface-container-high;
 }
 
-/* Active -- focused, filled indicator pill */
 button.ws.active {
-  color: $eww-on-primary-container;
-  background-color: $eww-primary-container;
-  font-weight: bold;
+  color: $eww-primary-container;
+  font-size: 18px;
 }
 
 button.ws.active:hover {
-  background-color: $eww-inverse-primary;
-  color: $eww-inverse-surface;
+  color: $eww-inverse-primary;
 }
 
-/* ── Music ── */
-
-.music {
-  color: $eww-on-primary-container;
-  font-size: 13px;
-  padding: 0 16px;
+/* Module shells */
+.module,
+.module-2 {
+  margin: 0;
+  border-radius: 12px;
 }
 
-/* ── Tray ── */
-
-.tray {
-  padding: 0 4px;
-}
-
-/* ── Pills ── */
-
-.pill {
-  background-color: $eww-surface-container;
-  border-radius: 14px;
-  padding: 2px 8px;
-  min-height: 24px;
-  transition: background-color 200ms cubic-bezier(0.2, 0, 0, 1);
-}
-
-.pill:hover {
-  background-color: $eww-surface-container-high;
-}
-
-.pill .icon {
-  color: $eww-accent;
-  font-size: 18px;
-  padding: 0;
-  border-radius: 8px;
-  transition: background-color 150ms ease;
-}
-
-.pill label {
-  color: $eww-on-surface;
-  font-size: 13px;
-}
-
-/* ── Circular progress ── */
-
-.pill progress {
-  min-width: 22px;
-  min-height: 22px;
-  border-radius: 50%;
-  background-color: $eww-surface-container-high;
-  padding: 3px;
-}
-
-.pill progress indicator {
-  background-color: $eww-accent;
-  border-radius: 50%;
-  min-width: 16px;
-  min-height: 16px;
-}
-
-/* ── Volume ── */
-
-.volume-pill .icon-btn {
-  color: $eww-accent;
-  font-size: 20px;
-  padding: 0;
-  border-radius: 8px;
-  transition: background-color 150ms ease;
-}
-
-.volume-pill .icon-btn:hover {
-  background-color: $eww-surface-container-high;
-}
-
-/* ── Clock ── */
-
-.clock-pill .icon {
+/* Clock */
+.clock_icon {
   color: $eww-tertiary;
+  font-size: 18px;
+  margin: 0 2px 0 4px;
+}
+
+.clock_time_class {
+  color: $eww-on-surface;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 2px 2px 0px 6px;
+}
+
+.clock_time_sep {
+  color: $eww-outline;
+  font-size: 16px;
+  margin: 0 4px;
+}
+
+.clock_date_class {
+  color: $eww-on-surface-variant;
+  font-size: 14px;
+  margin: 2px 8px 0 0;
+}
+
+/* Separator */
+.separ {
+  color: $eww-outline-variant;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0 4px;
+}
+
+/* Volume & screen-timeout icons (shared) */
+.module-2 .volume_icon,
+.module-2 .scr_icon {
+  font-size: 16px;
+  margin: 0 4px;
+  border-radius: 10px;
+}
+
+.module-2 .volume_icon { color: $eww-accent; }
+.module-2 .scr_icon { color: $eww-secondary; }
+
+/* Volume & screen-timeout scales (shared) */
+.volbar,
+.scrbar {
+  min-width: 70px;
+  min-height: 22px;
+}
+
+.volbar trough,
+.scrbar trough {
+  min-height: 8px;
+  min-width: 70px;
+  border-radius: 4px;
+  background-color: $eww-surface-container-highest;
+  padding: 0;
+}
+
+.volbar trough highlight {
+  border-radius: 4px;
+  min-height: 8px;
+  background-color: $eww-accent;
+}
+
+.scrbar trough highlight {
+  border-radius: 4px;
+  min-height: 8px;
+  background-color: $eww-secondary;
+}
+
+/* CPU */
+.cpu_module { margin: 0; }
+
+.cpubar {
+  color: $eww-on-surface-variant;
+  background-color: $eww-surface-variant;
+  border-radius: 14px;
+}
+
+/* Memory */
+.mem_module { margin: 0; }
+
+.membar {
+  color: $eww-tertiary;
+  background-color: $eww-surface-container-high;
+}
+
+/* Tooltip */
+tooltip.background {
+  background-color: $eww-surface-container-high;
+  border-radius: 10px;
+  color: $eww-on-surface;
+  font-size: 12px;
+}
+
+tooltip label { margin: 6px; }
+
+/* Pill (reusable card) */
+.pill {
+  background-color: $eww-surface-container-high;
+  border-radius: 18px;
+  padding: 0 8px;
+  margin: 4px 4px;
+}
+
+/* Sys-stats internals */
+.sys_icon {
+  color: $eww-secondary;
+}
+
+.center-dot {
+  font-size: 24px;
+  color: $eww-surface-container-highest;
+  margin: 0;
+  padding: 0;
 }

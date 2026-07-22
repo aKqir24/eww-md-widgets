@@ -1,25 +1,10 @@
 #!/bin/bash
 # Generates yuck code for app list from cache, writes to search_items.txt
-# Usage: search-apps.sh [query]
-QUERY="${1:-}"
 CACHE="$HOME/.cache/eww/apps.cache"
-OUT="$HOME/.config/eww/scripts/search_items.txt"
-[ -f "$CACHE" ] || ~/.config/eww/scripts/cache-apps
+OUT="$HOME/.files/configs/all/eww/scripts/search_items.txt"
+[ -f "$CACHE" ] || ~/.files/configs/all/eww/widgets/launcher/scripts/cache-apps
 
-if [ -z "$QUERY" ]; then
-    APPS=$(head -12 "$CACHE")
-else
-    APPS=$(awk -F'\t' -v q="$QUERY" '
-    BEGIN { n = split(q, words, " ") }
-    {
-        name = $2
-        ok = 1
-        for (i = 1; i <= n; i++) {
-            if (words[i] != "" && tolower(name) !~ tolower(words[i])) { ok = 0; break }
-        }
-        if (ok) print
-    }' "$CACHE" | head -12)
-fi
+APPS=$(head -12 "$CACHE")
 
 buf=""
 while IFS=$'\t' read -r exec_line name icon_path; do

@@ -1,7 +1,4 @@
 #!/bin/bash
-eww update emoji_query=""
-QUERY=""
-
 for i in 1 2 3 4 5; do
   WIN=$(xdotool search --name "emoji" 2>/dev/null | head -1)
   [ -n "$WIN" ] && break
@@ -22,12 +19,7 @@ while IFS= read -r line; do
         ks=$((16#$hex))
         case $ks in
             0xff1b) eww close emoji; break;;
-            0xff08) QUERY="${QUERY%?}";;
             0xff0d) eww close emoji; break;;
-            0x0020) QUERY="$QUERY ";;
-            *) [ $ks -ge 0x21 ] && [ $ks -le 0x7e ] && QUERY="$QUERY$(printf "\\$(printf '%03o' $ks)")";;
         esac
-        eww update emoji_query="$QUERY"
-        ~/.config/eww/scripts/search-emoji.sh "$QUERY"
     fi
 done

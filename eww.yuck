@@ -1,0 +1,8 @@
+;; Root config
+(include "variables.yuck")
+(include "widgets/bar/eww.yuck")
+(include "widgets/calendar/eww.yuck")
+(include "widgets/emoji/eww.yuck")
+(include "widgets/launcher/eww.yuck")
+(include "widgets/powermenu/eww.yuck")
+(include "widgets/powerprofile/eww.yuck")

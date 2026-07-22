@@ -1,8 +1,0 @@
-(defvar launcher_offset 0)
-(defvar app_count 0)
-(defvar search_query "")
-
-(defpoll search_listen :interval "1s"
-  "cat ~/.config/eww/scripts/search_items.txt 2>/dev/null || echo '(box)'" )
-
-(defpoll app_cache_init :interval "86400s" "scripts/cache-apps && echo ok")

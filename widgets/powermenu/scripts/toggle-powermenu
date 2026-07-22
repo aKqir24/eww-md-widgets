@@ -1,0 +1,2 @@
+#!/bin/sh
+eww close powermenu 2>/dev/null

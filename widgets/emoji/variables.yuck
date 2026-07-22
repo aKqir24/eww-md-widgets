@@ -1,5 +1,0 @@
-(defvar emoji_query "")
-
-;; Emoji picker
-(defpoll emoji_listen :interval "1s"
-  "cat ~/.config/eww/scripts/emoji_items.txt 2>/dev/null || echo '(box)'" )

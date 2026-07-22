@@ -18,4 +18,4 @@ else
     fi
 fi
 
-~/.config/eww/scripts/calendar "$MONTH" "$YEAR"
+~/.files/configs/all/eww/widgets/calendar/scripts/values "$MONTH" "$YEAR"

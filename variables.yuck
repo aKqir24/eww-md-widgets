@@ -1,0 +1,56 @@
+;; -- Bar --
+(defvar show_date false)
+
+(deflisten ws_yuck :initial "(box)"
+  "$HOME/.files/configs/all/eww/widgets/bar/scripts/wslistener")
+
+(deflisten music :initial ""
+  "playerctl --follow metadata --format '{{ artist }} - {{ title }}' 2>/dev/null || echo ''")
+
+(defpoll volume :initial "0" :interval "1s"
+  "$HOME/.files/configs/all/eww/widgets/bar/scripts/getvol")
+
+(defpoll cpu :initial "0" :interval "2s"
+  "$HOME/.files/configs/all/eww/widgets/bar/scripts/getcpu")
+
+(defpoll memory :initial "0" :interval "3s"
+  "free -m | awk '/Mem:/{printf \"%d\", \$3/\$2*100}'")
+
+(defpoll occupied_ws :initial "" :interval "3s"
+  "$HOME/.files/configs/all/eww/widgets/bar/scripts/getoccupied")
+
+(defpoll time :interval "1s"
+  "date '+%I:%M %p'")
+
+(defpoll date :interval "1s"
+  "LC_ALL=C date '+%b %-d, %Y'")
+
+(defvar vol_reveal false)
+
+(defpoll screen_timeout :initial "10" :interval "3s"
+  "$HOME/.files/configs/all/eww/widgets/bar/scripts/gettimeout")
+
+(defvar scr_reveal false)
+
+;; -- Calendar --
+(defpoll cal_init :interval "86400s" "eww update cal_day=$(date +%-d) cal_month_num=$(date +%-m) cal_year=$(date +%Y) && echo ok")
+(defvar cal_month_num 7)
+(defvar cal_day 22)
+(defvar cal_year 2026)
+(defvar calendar_open false)
+
+;; -- Emoji --
+(defpoll emoji_listen :interval "1s"
+  "cat ~/.files/configs/all/eww/scripts/emoji_items.txt 2>/dev/null || echo '(box)'")
+
+;; -- Launcher --
+(defvar launcher_offset 0)
+(defvar app_count 0)
+
+(defpoll search_listen :interval "1s"
+  "cat ~/.files/configs/all/eww/scripts/search_items.txt 2>/dev/null || echo '(box)'")
+
+(defpoll app_cache_init :interval "86400s" "$HOME/.files/configs/all/eww/widgets/launcher/scripts/cache-apps && echo ok")
+
+;; -- Powermenu --
+(defvar powermenu_open false)
