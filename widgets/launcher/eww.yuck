@@ -15,7 +15,7 @@
   :wm-ignore true
   :focusable true
   :geometry (geometry :x "0%"
-                      :y "0%"
+                      :y "30%"
                       :width "100%"
                       :height "100%"
                       :anchor "top left")

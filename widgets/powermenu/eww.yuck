@@ -1,38 +1,40 @@
 ;; -- Power Menu Widget --
 
-(defwidget powermenu-button [icon lbl action]
-  (button :class "powermenu-btn" :onclick "${action} && $HOME/.files/configs/all/eww/widgets/powermenu/scripts/toggle-powermenu"
-    (box :class "powermenu-btn-inner" :orientation "v" :space-evenly false :spacing 8 :halign "center"
-      (label :class "powermenu-btn-icon" :text "${icon}")
-      (label :class "powermenu-btn-label" :text "${lbl}"))))
+(defwidget action-btn [icon action]
+  (button :class "pm-action" :onclick "${action}; $HOME/.files/configs/all/eww/widgets/powermenu/launch.sh"
+    (label :class "pm-action-icon" :text "${icon}")))
 
 (defwidget profile-button [prof icon lbl]
-  (button :class "powermenu-profile-item {current_profile == \"${prof}\" ? \"active\" : \"\"}"
-          :onclick "powerprofilesctl set ${prof} && notify-send 'Power Profile' 'Set to ${lbl}' && $HOME/.files/configs/all/eww/widgets/powermenu/scripts/toggle-powermenu"
-    (box :class "powermenu-profile-inner" :orientation "h" :space-evenly false :spacing 12 :halign "center" :valign "center"
-      (label :class "powermenu-profile-icon" :text "${icon}")
-      (label :class "powermenu-profile-label" :text "${lbl}"))))
+  (button :class "pm-chip {current_profile == \"${prof}\" ? \"active\" : \"\"}"
+          :onclick "powerprofilesctl set ${prof}; $HOME/.files/configs/all/eww/widgets/powermenu/launch.sh"
+    (box :orientation "h" :space-evenly false :spacing 6 :valign "center" :halign "center"
+      (label :class "pm-chip-icon" :text "${icon}")
+      (label :class "pm-chip-label" :text "${lbl}"))))
 
 (defwidget powermenu-content []
-  (box :class "powermenu-card" :orientation "v" :space-evenly false :spacing 16 :halign "center"
-    (label :class "powermenu-title" :text "Power Menu")
-    (box :class "powermenu-separator")
-    (box :class "powermenu-actions" :orientation "h" :space-evenly false :spacing 12 :halign "center"
-      (powermenu-button :icon "󰤄" :lbl "Sleep" :action "systemctl suspend")
-      (powermenu-button :icon "󰍃" :lbl "Logout" :action "$HOME/.files/configs/all/eww/widgets/powermenu/scripts/logout-session")
-      (powermenu-button :icon "󰜉" :lbl "Reboot" :action "systemctl reboot")
-      (powermenu-button :icon "⏻" :lbl "Power" :action "systemctl poweroff"))
-    (box :class "powermenu-separator")
-    (box :class "powermenu-profile-header" :orientation "h" :space-evenly false :spacing 8 :halign "center" :valign "center"
-      (label :class "powermenu-profile-header-icon" :text "⏻")
-      (label :class "powermenu-profile-header-label" :text "Power Profile"))
-    (label :class "powermenu-current-profile" :halign "center"
-           :text {current_profile == "performance" ? "Performance" : current_profile == "power-saver" ? "Power Saver" : "Balanced"})
-    (box :class "powermenu-profiles" :orientation "v" :space-evenly false :spacing 4 :halign "center"
-      (profile-button :prof "power-saver" :icon "󰋜" :lbl "Power Saver")
-      (profile-button :prof "balanced" :icon "󰈐" :lbl "Balanced")
-      (profile-button :prof "performance" :icon "󰤄" :lbl "Performance"))
-    (button :class "powermenu-cancel" :onclick "$HOME/.files/configs/all/eww/widgets/powermenu/scripts/toggle-powermenu"
+  (box :class "powermenu-card" :orientation "v" :space-evenly false :spacing 12 :halign "center"
+    (label :class "pm-title" :text "Power Menu" :halign "center")
+    (box :class "pm-sep")
+    
+    ;; All 4 action buttons inside the horizontal box
+    (box :class "pm-actions" :orientation "h" :space-evenly false :spacing 10 :halign "center"
+      (action-btn :icon "" :action "systemctl poweroff")
+      (action-btn :icon "" :action "systemctl reboot")
+      (action-btn :icon "" :action "systemctl suspend")
+      (action-btn :icon "" :action "$HOME/.files/configs/all/eww/widgets/powermenu/scripts/logout-session"))
+      
+    (box :class "pm-sep")
+    
+    (box :orientation "h" :space-evenly false :halign "fill" :hexpand true
+      (label :class "pm-section-label" :text "Power Profile" :halign "start" :hexpand true)
+      (label :class "pm-current-badge" :text {current_profile == "performance" ? "Ultimate" : current_profile == "power-saver" ? "Minimal" : "Balanced"} :halign "end"))
+      
+    (box :class "pm-chips" :orientation "h" :space-evenly true :spacing 8 :halign "fill" :hexpand true
+      (profile-button :prof "power-saver" :icon "" :lbl "Minimal")
+      (profile-button :prof "balanced" :icon "" :lbl "Balanced")
+      (profile-button :prof "performance" :icon "" :lbl "Ultimate"))
+      
+    (button :class "pm-cancel" :onclick "$HOME/.files/configs/all/eww/widgets/powermenu/launch.sh"
       (label :text "Cancel"))))
 
 ;; -- Window --
@@ -43,9 +45,8 @@
   :wm-ignore true
   :focusable false
   :geometry (geometry :x "0%"
-                      :y "44px"
-                      :width "360px"
-                      :height "400px"
+                      :y "30%"
+                      :width "100px"
                       :anchor "top center")
   :reserve (struts :distance "0px" :side "top")
   (powermenu-content))

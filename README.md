@@ -20,6 +20,7 @@ Built by closely following the [Material 3 Design](https://m3.material.io/) guid
 | `matugen` | Material You color generation |
 | `jq` | JSON processing |
 | `xdotool` | X11 automation |
+| `fonts-material-design-icons-iconfont` & `Any NF-Fonts` | for some icons used in widgets |
 
 ## Setup
 
@@ -60,12 +61,17 @@ output_path = '~/.cache/matugen/eww-colors.scss'
 
 ## Widget Progress
 
-- [x] Calendar
-- [ ] Bluetooth
 - [ ] WiFi
+- [ ] Bluetooth
 - [ ] Audio Controls
-- [ ] Power Profiles *(in progress)*
+- [x] Power Menu 
 - [ ] Status Bar *(in progress)*
+    - [x] System Resource Tooltip
+    - [x] Calendar
+    - [x] Time & Date
+    - [x] Screen Timeout (it is like caffaine)
+    - [ ] Audio Control
+    - [ ] App Launcher Module
+    - [ ] System Tray
 - [ ] App Launcher *(in progress)*
-- [ ] Power Menu *(in progress)*
 - [ ] Emoji Menu *(in progress)*

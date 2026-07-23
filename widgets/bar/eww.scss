@@ -206,9 +206,15 @@ button.ws.active:hover {
 .power-btn-icon {
   color: $eww-accent;
   font-size: 16px;
+  margin-right: 3px;
+  font-weight: bold;
 }
 
 .power-btn-icon:hover {
   color: $eww-on-primary-container;
   background-color: $eww-primary-container;
+}
+
+.power-btn-icon:active {
+  color: $eww-surface-dim;
 }

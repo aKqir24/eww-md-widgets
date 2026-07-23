@@ -106,7 +106,7 @@
   :stacking "fg"
   :wm-ignore false
   :geometry (geometry :x "0%"
-                      :y "4px"
+                      :y "0.55%"
                       :width "99.4%"
                       :height "32px"
                       :anchor "top center")
@@ -121,7 +121,7 @@
   :focusable false
   :exclusivity "ignore"
   :geometry (geometry :x "68%"
-                      :y "44px"
+                      :y "5.2%"
                       :width "280px"
                       :height "60px"
                       :anchor "top left")

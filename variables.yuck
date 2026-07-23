@@ -59,6 +59,8 @@
 (defpoll current_profile :initial "balanced" :interval "5s"
   "powerprofilesctl get 2>/dev/null || echo balanced")
 
+(defvar pm_profile_open false)
+
 ;; -- System Stats Tooltip --
 (defvar sys_reveal false)
 

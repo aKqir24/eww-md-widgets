@@ -1,0 +1,6 @@
+#!/bin/sh
+if [ "$(eww get pm_profile_open)" = "true" ]; then
+    eww update pm_profile_open=false
+else
+    eww update pm_profile_open=true
+fi
