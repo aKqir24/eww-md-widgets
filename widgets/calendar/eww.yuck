@@ -16,7 +16,6 @@
   :geometry (geometry :x "-35%"
                       :y "44px"
                       :width "336px"
-                      :height "214px"
                       :anchor "top right")
   :reserve (struts :distance "0px" :side "top")
   :focusable false

@@ -1,9 +1,8 @@
 #!/bin/bash
 DIR="$(dirname "$0")/../widgets"
-ACTIVE=$(eww active-windows 2>/dev/null)
 
 for widget in "$DIR"/*/; do
     name=$(basename "$widget")
     [ "$name" = "bar" ] && continue
-    echo "$ACTIVE" | grep -q "$name" && eww close "$name"
+    eww close "$name" 2>/dev/null
 done

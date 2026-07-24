@@ -14,6 +14,20 @@ case "$1" in
         [ "$muted" -gt 0 ] && val=0
         eww update volume="$val"
         ;;
+    right)
+        wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+        val=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null | awk '{printf "%d", $2 * 100}')
+        muted=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null | grep -c '\[MUTED\]')
+        [ "$muted" -gt 0 ] && val=0
+        eww update volume="$val"
+        ;;
+    left)
+        wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+        val=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null | awk '{printf "%d", $2 * 100}')
+        muted=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null | grep -c '\[MUTED\]')
+        [ "$muted" -gt 0 ] && val=0
+        eww update volume="$val"
+        ;;
     mute)
         wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
         val=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null | awk '{printf "%d", $2 * 100}')

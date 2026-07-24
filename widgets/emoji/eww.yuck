@@ -10,9 +10,10 @@
 ;; -- Window --
 (defwindow emoji
   :monitor 0
-  :windowtype "normal"
+  :windowtype "dialog"
   :stacking "overlay"
   :wm-ignore true
+  :focusable true
   :geometry (geometry :x "0%"
                       :y "0%"
                       :width "100%"

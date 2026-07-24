@@ -1,6 +1,6 @@
 #!/bin/bash
 case "$1" in
-    up)
+    up|right)
         cur=$(xset q 2>/dev/null | awk '/timeout:/{print $2}')
         nxt=$(( cur + 300 ))
         [ "$nxt" -gt 1800 ] && nxt=1800
@@ -8,7 +8,7 @@ case "$1" in
         xset s "$nxt" +dpms dpms "$nxt" "$nxt" "$nxt"
         eww update screen_timeout=$(( nxt / 60 ))
         ;;
-    down)
+    down|left)
         cur=$(xset q 2>/dev/null | awk '/timeout:/{print $2}')
         nxt=$(( cur - 300 ))
         [ "$nxt" -lt 0 ] && nxt=0

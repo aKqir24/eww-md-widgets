@@ -104,7 +104,7 @@ button.ws.active:hover {
 .module-2 .volume_icon,
 .module-2 .scr_icon {
   font-size: 16px;
-  margin: 0 4px;
+  margin: 0 6px -3.5px 0px;
   border-radius: 10px;
 }
 
@@ -116,6 +116,7 @@ button.ws.active:hover {
 .scrbar {
   min-width: 70px;
   min-height: 22px;
+  margin-top: 3.5px;
 }
 
 .volbar trough,
@@ -206,13 +207,19 @@ button.ws.active:hover {
 .power-btn-icon {
   color: $eww-accent;
   font-size: 16px;
-  margin-right: 3px;
+  margin-left: -2px;
+  margin-right: 2px;
   font-weight: bold;
 }
 
-.power-btn-icon:hover {
-  color: $eww-on-primary-container;
+.power-btn-icon:hover,
+.power-btn-icon:hover label,
+button.power-btn-icon:hover > * {
+  color: $eww-surface-dim;
+  margin-left: -2px;
+  margin-right: 2px;
   background-color: $eww-primary-container;
+  border-radius: 50%
 }
 
 .power-btn-icon:active {

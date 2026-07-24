@@ -31,7 +31,7 @@
 ;; -- System modules (right side of bar) --
 
 (defwidget left []
-  (box :class "left_modules" :orientation "h" :space-evenly false :halign "end"
+  (box :class "left_modules" :orientation "h" :space-evenly false :halign "end" :spacing 8
     (screentimeout)
     (volume)
     (sys_stats)
@@ -41,8 +41,8 @@
 (defwidget screentimeout []
   (eventbox :onhover "$HOME/.files/configs/all/eww/widgets/bar/scripts/eww-update scr_reveal true"
             :onhoverlost "$HOME/.files/configs/all/eww/widgets/bar/scripts/eww-update scr_reveal false"
-            :onscroll "$HOME/.files/configs/all/eww/widgets/bar/scripts/settimeout $EWWTASK"
-    (box :class "module-2 scr_module" :orientation "h" :space-evenly false :spacing 4 :valign "center"
+            :onscroll "$HOME/.files/configs/all/eww/widgets/bar/scripts/settimeout {}"
+    (box :class "module-2 scr_module" :orientation "h" :space-evenly false :spacing 8 :valign "center"
       (button :class "scr_icon" :onclick "$HOME/.files/configs/all/eww/widgets/bar/scripts/settimeout toggle"
         {screen_timeout == 0 ? "󰈉" : "󰈈"})
       (revealer :transition "slideleft"
@@ -56,7 +56,7 @@
 (defwidget volume []
   (eventbox :onhover "$HOME/.files/configs/all/eww/widgets/bar/scripts/eww-update vol_reveal true"
             :onhoverlost "$HOME/.files/configs/all/eww/widgets/bar/scripts/eww-update vol_reveal false"
-            :onscroll "$HOME/.files/configs/all/eww/widgets/bar/scripts/setvol $EWWTASK"
+            :onscroll "$HOME/.files/configs/all/eww/widgets/bar/scripts/setvol {}"
     (box :class "module-2" :orientation "h" :space-evenly false :spacing 4 :valign "center"
       (button :class "volume_icon" :onclick "$HOME/.files/configs/all/eww/widgets/bar/scripts/setvol mute"
         {volume == 0 ? "󰝟" : "󰕾"})

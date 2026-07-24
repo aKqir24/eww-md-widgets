@@ -10,7 +10,7 @@
 ;; -- Window --
 (defwindow launcher
   :monitor 0
-  :windowtype "normal"
+  :windowtype "dialog"
   :stacking "overlay"
   :wm-ignore true
   :focusable true

@@ -33,7 +33,6 @@
 (defvar scr_reveal false)
 
 ;; -- Calendar --
-(defpoll cal_init :interval "86400s" "eww update cal_day=$(date +%-d) cal_month_num=$(date +%-m) cal_year=$(date +%Y) && echo ok")
 (defvar cal_month_num 7)
 (defvar cal_day 22)
 (defvar cal_year 2026)

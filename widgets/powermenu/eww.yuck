@@ -34,16 +34,16 @@
       (profile-button :prof "balanced" :icon "" :lbl "Balanced")
       (profile-button :prof "performance" :icon "" :lbl "Ultimate"))
       
-    (button :class "pm-cancel" :onclick "$HOME/.files/configs/all/eww/widgets/powermenu/launch.sh"
+    (button :class "pm-cancel" :halign "center" :onclick "$HOME/.files/configs/all/eww/widgets/powermenu/launch.sh"
       (label :text "Cancel"))))
 
 ;; -- Window --
 (defwindow powermenu
   :monitor 0
-  :windowtype "normal"
+  :windowtype "dialog"
   :stacking "overlay"
   :wm-ignore true
-  :focusable false
+  :focusable true
   :geometry (geometry :x "0%"
                       :y "30%"
                       :width "100px"
